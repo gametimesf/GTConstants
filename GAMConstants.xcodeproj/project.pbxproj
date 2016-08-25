@@ -7,13 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11704A8E6925B2D70C9AB7AD /* Pods_GAMConstants.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2ACF3391F29F5DA33E5B63A /* Pods_GAMConstants.framework */; };
 		3614FF3C1D6E6E6900275987 /* GAMConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 3614FF3B1D6E6E6900275987 /* GAMConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3614FF461D6E6EFD00275987 /* GAMInterceptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3614FF431D6E6EFD00275987 /* GAMInterceptionManager.swift */; };
+		3614FF471D6E6EFD00275987 /* GAMStringsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3614FF441D6E6EFD00275987 /* GAMStringsManager.swift */; };
+		3614FF481D6E6EFD00275987 /* GAMConstantsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3614FF451D6E6EFD00275987 /* GAMConstantsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3614FF381D6E6E6900275987 /* GAMConstants.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GAMConstants.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3614FF3B1D6E6E6900275987 /* GAMConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAMConstants.h; sourceTree = "<group>"; };
 		3614FF3D1D6E6E6900275987 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3614FF431D6E6EFD00275987 /* GAMInterceptionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GAMInterceptionManager.swift; sourceTree = "<group>"; };
+		3614FF441D6E6EFD00275987 /* GAMStringsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GAMStringsManager.swift; sourceTree = "<group>"; };
+		3614FF451D6E6EFD00275987 /* GAMConstantsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GAMConstantsManager.swift; sourceTree = "<group>"; };
+		541D946BD64509C61EF28C98 /* Pods-GAMConstants.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GAMConstants.release.xcconfig"; path = "Pods/Target Support Files/Pods-GAMConstants/Pods-GAMConstants.release.xcconfig"; sourceTree = "<group>"; };
+		CF430363871E531BDC16E20B /* Pods-GAMConstants.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GAMConstants.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GAMConstants/Pods-GAMConstants.debug.xcconfig"; sourceTree = "<group>"; };
+		F2ACF3391F29F5DA33E5B63A /* Pods_GAMConstants.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GAMConstants.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -21,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11704A8E6925B2D70C9AB7AD /* Pods_GAMConstants.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -32,6 +43,8 @@
 			children = (
 				3614FF3A1D6E6E6900275987 /* GAMConstants */,
 				3614FF391D6E6E6900275987 /* Products */,
+				554F28813E8C1DD0EBDD343E /* Pods */,
+				5613F5972EF93A050F28385D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -46,10 +59,30 @@
 		3614FF3A1D6E6E6900275987 /* GAMConstants */ = {
 			isa = PBXGroup;
 			children = (
+				3614FF431D6E6EFD00275987 /* GAMInterceptionManager.swift */,
+				3614FF441D6E6EFD00275987 /* GAMStringsManager.swift */,
+				3614FF451D6E6EFD00275987 /* GAMConstantsManager.swift */,
 				3614FF3B1D6E6E6900275987 /* GAMConstants.h */,
 				3614FF3D1D6E6E6900275987 /* Info.plist */,
 			);
 			path = GAMConstants;
+			sourceTree = "<group>";
+		};
+		554F28813E8C1DD0EBDD343E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CF430363871E531BDC16E20B /* Pods-GAMConstants.debug.xcconfig */,
+				541D946BD64509C61EF28C98 /* Pods-GAMConstants.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		5613F5972EF93A050F28385D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F2ACF3391F29F5DA33E5B63A /* Pods_GAMConstants.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -70,10 +103,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3614FF401D6E6E6900275987 /* Build configuration list for PBXNativeTarget "GAMConstants" */;
 			buildPhases = (
+				DA6D295E16C9000302003E5F /* [CP] Check Pods Manifest.lock */,
 				3614FF331D6E6E6900275987 /* Sources */,
 				3614FF341D6E6E6900275987 /* Frameworks */,
 				3614FF351D6E6E6900275987 /* Headers */,
 				3614FF361D6E6E6900275987 /* Resources */,
+				7BD9BCF9998C9280C8EA6C0C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -125,11 +160,47 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7BD9BCF9998C9280C8EA6C0C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GAMConstants/Pods-GAMConstants-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DA6D295E16C9000302003E5F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3614FF331D6E6E6900275987 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3614FF471D6E6EFD00275987 /* GAMStringsManager.swift in Sources */,
+				3614FF481D6E6EFD00275987 /* GAMConstantsManager.swift in Sources */,
+				3614FF461D6E6EFD00275987 /* GAMInterceptionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,7 +300,9 @@
 		};
 		3614FF411D6E6E6900275987 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF430363871E531BDC16E20B /* Pods-GAMConstants.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -240,12 +313,15 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Gametime.GAMConstants;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		3614FF421D6E6E6900275987 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 541D946BD64509C61EF28C98 /* Pods-GAMConstants.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -278,6 +354,7 @@
 				3614FF421D6E6E6900275987 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

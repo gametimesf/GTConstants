@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0730"
+   LastUpgradeVersion = "0700"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3614FF371D6E6E6900275987"
-               BuildableName = "GAMConstants.framework"
-               BlueprintName = "GAMConstants"
-               ReferencedContainer = "container:GAMConstants.xcodeproj">
+               BlueprintIdentifier = "6051E9CDF5CCBDDB4DECE0A79C269FFB"
+               BuildableName = "Pods_GAMConstants.framework"
+               BlueprintName = "Pods-GAMConstants"
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,10 +45,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3614FF371D6E6E6900275987"
-            BuildableName = "GAMConstants.framework"
-            BlueprintName = "GAMConstants"
-            ReferencedContainer = "container:GAMConstants.xcodeproj">
+            BlueprintIdentifier = "6051E9CDF5CCBDDB4DECE0A79C269FFB"
+            BuildableName = "Pods_GAMConstants.framework"
+            BlueprintName = "Pods-GAMConstants"
+            ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -60,15 +60,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3614FF371D6E6E6900275987"
-            BuildableName = "GAMConstants.framework"
-            BlueprintName = "GAMConstants"
-            ReferencedContainer = "container:GAMConstants.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
