@@ -11,5 +11,5 @@ Pod::Spec.new do |s|
   s.ios.frameworks        = 'Foundation', 'UIKit'
   s.ios.deployment_target = '9.0'
   s.requires_arc          = true
-  s.source                = { :git => 'https://github.com/gametimesf/GAMConstants.git', :commit => "270d0df7bca061f46436b137c597d2998619d409" }
+  s.source                = { :git => 'https://github.com/gametimesf/GAMConstants.git', :tag => "#{s.version}" }
 end
