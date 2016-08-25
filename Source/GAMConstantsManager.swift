@@ -11,6 +11,11 @@ import UIKit
 public struct GAMConstantsManagerConfig {
     public let defaultConfigFile : String
     public let overrideConfigFile : String?
+    
+    public init(defaultConfigFile : String, overrideConfigFile : String?) {
+        self.defaultConfigFile = defaultConfigFile
+        self.overrideConfigFile = overrideConfigFile
+    }
 }
 
 public class GAMConstantsManager: NSObject {
