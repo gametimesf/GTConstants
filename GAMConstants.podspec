@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.homepage              = "https://github.com/gametimesf/GAMConstants"
   s.license               = 'MIT'
   s.author                = { "Mike Silvis" => "mike@gametime.co" }
-  s.source_files          = "Classes", "Classes/**/*.{h,m}"
+  s.source_files          = 'Source/*.swift'
   s.exclude_files         = "Classes/Exclude"
   s.ios.frameworks        = 'Foundation', 'UIKit'
   s.ios.deployment_target = '9.0'

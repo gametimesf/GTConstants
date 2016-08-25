@@ -15,22 +15,22 @@ struct GAMConstantsManagerConfig {
 
 class GAMConstantsManager: NSObject {
     static let sharedInstance = GAMConstantsManager()
-
+    
     typealias PlistDict = [String : AnyObject]
     private var plist : PlistDict = [:]
-
+    
     private static let interceptionsURLKey = "interceptions_url"
-
+    
     var config : GAMConstantsManagerConfig? {
         didSet {
             guard let config = config else { return }
-
+            
             plist = getContentsOfFile(config.defaultConfigFile)
-
+            
             if let overrideFile = config.overrideConfigFile {
                 setOverrideFile(overrideFile)
             }
-
+            
             if interceptionsConfigured() {
                 GAMInterceptionManager.sharedInstance.sync()
             }
@@ -48,14 +48,14 @@ class GAMConstantsManager: NSObject {
             plist[key] = newSetting
         }
     }
-
+    
     //
     // MARK: Interceptions
     //
-
+    
     func interceptionsURL() -> NSURL? {
         guard interceptionsConfigured() else { return nil }
-
+        
         return NSURL(string: findFromPlist(GAMConstantsManager.interceptionsURLKey) as! String)
     }
 
@@ -98,7 +98,7 @@ class GAMConstantsManager: NSObject {
     //
     // MARK: Helpers
     //
-
+    
     private func interceptionsConfigured() -> Bool {
         return (findFromPlist(GAMConstantsManager.interceptionsURLKey) as? String) != nil
     }
@@ -125,7 +125,7 @@ class GAMConstantsManager: NSObject {
         guard let _ = config else {
             fatalError("You must provide a config param before accessing the constants manager")
         }
-
+        
         return plist[key]
     }
 
