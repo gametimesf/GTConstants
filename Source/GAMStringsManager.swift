@@ -8,22 +8,22 @@
 
 import UIKit
 
-class GAMStringsManager: NSObject {
-    static let sharedInstance = GAMStringsManager()
+public class GAMStringsManager: NSObject {
+    public static let sharedInstance = GAMStringsManager()
 
-    func stringForID(key : String?) -> String {
+    public func stringForID(key : String?) -> String {
         guard let key = key else { return "" }
 
         return findString(key, safeToNotExist: false)
     }
 
-    func stringForIDWithList(key : String?, args: CVaListPointer) -> String {
+    public func stringForIDWithList(key : String?, args: CVaListPointer) -> String {
         guard let key = key else { return "" }
 
         return NSString(format: findString(key, safeToNotExist: false), locale: NSLocale.currentLocale(), arguments: args) as String
     }
 
-    func stringForID(key : String?, safetoNotExist: Bool) -> String {
+    public func stringForID(key : String?, safetoNotExist: Bool) -> String {
         guard let key = key else { return "" }
 
         return findString(key, safeToNotExist: safetoNotExist)
@@ -62,11 +62,11 @@ class GAMStringsManager: NSObject {
 }
 
 extension String {
-    func localized() -> String {
+    public func localized() -> String {
         return GAMStringsManager.sharedInstance.stringForID(self)
     }
 
-    func localizedWithArgs(args : CVarArgType...) -> String {
+    public func localizedWithArgs(args : CVarArgType...) -> String {
         return withVaList(args) {
             return GAMStringsManager.sharedInstance.stringForIDWithList(self, args: $0)
         } as String
@@ -74,7 +74,7 @@ extension String {
 }
 
 extension UIBarButtonItem {
-    @IBInspectable var localizedText: String? {
+    @IBInspectable public var localizedText: String? {
         get {
             return title
         }
@@ -85,7 +85,7 @@ extension UIBarButtonItem {
 }
 
 extension UIViewController {
-    @IBInspectable var localizedTitle: String? {
+    @IBInspectable public var localizedTitle: String? {
         get {
             return title
         }
@@ -96,7 +96,7 @@ extension UIViewController {
 }
 
 extension UIButton {
-    @IBInspectable var localizedText: String? {
+    @IBInspectable public var localizedText: String? {
         get {
             return titleLabel?.text
         }
@@ -107,7 +107,7 @@ extension UIButton {
 }
 
 extension UILabel {
-    @IBInspectable var localizedText: String? {
+    @IBInspectable public var localizedText: String? {
         get {
             return text
         }

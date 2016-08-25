@@ -8,20 +8,20 @@
 
 import UIKit
 
-struct GAMConstantsManagerConfig {
+public struct GAMConstantsManagerConfig {
     let defaultConfigFile : String
     let overrideConfigFile : String?
 }
 
-class GAMConstantsManager: NSObject {
-    static let sharedInstance = GAMConstantsManager()
+public class GAMConstantsManager: NSObject {
+    public static let sharedInstance = GAMConstantsManager()
     
     typealias PlistDict = [String : AnyObject]
     private var plist : PlistDict = [:]
     
     private static let interceptionsURLKey = "interceptions_url"
     
-    var config : GAMConstantsManagerConfig? {
+    public var config : GAMConstantsManagerConfig? {
         didSet {
             guard let config = config else { return }
             
@@ -53,7 +53,7 @@ class GAMConstantsManager: NSObject {
     // MARK: Interceptions
     //
     
-    func interceptionsURL() -> NSURL? {
+    internal func interceptionsURL() -> NSURL? {
         guard interceptionsConfigured() else { return nil }
         
         return NSURL(string: findFromPlist(GAMConstantsManager.interceptionsURLKey) as! String)
@@ -63,7 +63,7 @@ class GAMConstantsManager: NSObject {
     // MARK: Finders
     //
 
-    func intForID(key : String) -> NSInteger {
+    public func intForID(key : String) -> NSInteger {
         guard let int = findObjectFromKey(key) as? NSInteger else {
             fatalError( "Key is missing : \(key)")
         }
@@ -71,7 +71,7 @@ class GAMConstantsManager: NSObject {
         return int
     }
 
-    func numberForID(key : String) -> NSNumber {
+    public func numberForID(key : String) -> NSNumber {
         guard let number = findObjectFromKey(key) as? NSNumber else {
             fatalError( "Key is missing : \(key)")
         }
@@ -79,7 +79,7 @@ class GAMConstantsManager: NSObject {
         return number
     }
 
-    func boolForID(key: String) -> Bool {
+    public func boolForID(key: String) -> Bool {
         guard let bool = findObjectFromKey(key) as? Bool else {
             fatalError( "Key is missing : \(key)")
         }
@@ -87,7 +87,7 @@ class GAMConstantsManager: NSObject {
         return bool
     }
 
-    func stringForID(key : String) -> String {
+    public func stringForID(key : String) -> String {
         guard let string = findObjectFromKey(key) as? String else {
             fatalError("Key is missing : \(key)")
         }
@@ -136,7 +136,7 @@ class GAMConstantsManager: NSObject {
 }
 
 extension String {
-    func constantString() -> String {
+    public func constantString() -> String {
         return (GAMConstantsManager.sharedInstance.stringForID(self) ?? self)
     }
 }

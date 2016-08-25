@@ -8,8 +8,8 @@
 
 import UIKit
 
-class GAMInterceptionManager: NSObject {
-    static let sharedInstance = GAMInterceptionManager()
+public class GAMInterceptionManager: NSObject {
+    internal static let sharedInstance = GAMInterceptionManager()
     
     private static let kInterceptionManagerKey = "kInterceptionManagerKey"
     private static let interceptionDefault = "GAMInterceptionManagerDefault"
@@ -32,25 +32,25 @@ class GAMInterceptionManager: NSObject {
     // MARK : Helper functions
     //
 
-    func hotfixNumForKey(key : String) -> NSNumber? {
+    internal func hotfixNumForKey(key : String) -> NSNumber? {
         guard let fix = hotfixes[key] as? NSNumber else { return nil }
 
         return fix
     }
 
-    func hotfixStringForKey(key : String) -> String? {
+    internal func hotfixStringForKey(key : String) -> String? {
         guard let fix = hotfixes[key] as? String else { return nil }
 
         return fix
     }
 
-    func hotfixObjectforKey(key : String) -> AnyObject? {
+    internal func hotfixObjectforKey(key : String) -> AnyObject? {
         guard let fix = hotfixes[key] else { return nil }
 
         return fix
     }
 
-    func sync() {
+    public func sync() {
         guard let interceptionURL = GAMConstantsManager.sharedInstance.interceptionsURL() else { return }
         
         let defaultSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
