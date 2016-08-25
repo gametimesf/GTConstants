@@ -9,7 +9,7 @@
 import UIKit
 
 public class GAMInterceptionManager: NSObject {
-    internal static let sharedInstance = GAMInterceptionManager()
+    public static let sharedInstance = GAMInterceptionManager()
     
     private static let kInterceptionManagerKey = "kInterceptionManagerKey"
     private static let interceptionDefault = "GAMInterceptionManagerDefault"
@@ -32,19 +32,19 @@ public class GAMInterceptionManager: NSObject {
     // MARK : Helper functions
     //
 
-    internal func hotfixNumForKey(key : String) -> NSNumber? {
+    public func hotfixNumForKey(key : String) -> NSNumber? {
         guard let fix = hotfixes[key] as? NSNumber else { return nil }
 
         return fix
     }
 
-    internal func hotfixStringForKey(key : String) -> String? {
+    public func hotfixStringForKey(key : String) -> String? {
         guard let fix = hotfixes[key] as? String else { return nil }
 
         return fix
     }
 
-    internal func hotfixObjectforKey(key : String) -> AnyObject? {
+    public func hotfixObjectforKey(key : String) -> AnyObject? {
         guard let fix = hotfixes[key] else { return nil }
 
         return fix

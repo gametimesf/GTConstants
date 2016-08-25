@@ -9,8 +9,8 @@
 import UIKit
 
 public struct GAMConstantsManagerConfig {
-    let defaultConfigFile : String
-    let overrideConfigFile : String?
+    public let defaultConfigFile : String
+    public let overrideConfigFile : String?
 }
 
 public class GAMConstantsManager: NSObject {
