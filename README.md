@@ -13,7 +13,7 @@ CSStickyHeaderFlowLayout is available through [CocoaPods](http://cocoapods.org),
 it simply add the following line to your Podfile:
 
     pod "GAMConstants"
-    
+
 ### Carthage
 
     github "gametimesf/GAMConstants" == 0.1.8
@@ -25,7 +25,7 @@ In Your AppDelegate.swift configure the constants manager with a production plis
 ```
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    
+
     #if DEBUG
         GAMConstantsManager.sharedInstance.config = alphaConfig()
     #else
@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
         return true
     }
-    
+
     // Where Constants is a .plist file in your /Resources directory
     private class func prodConfig() -> GAMConstantsManagerConfig {
         return GAMConstantsManagerConfig(defaultConfigFile: "Constants",
@@ -58,7 +58,7 @@ import GAMConstants
 class MyTableViewController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         GMSServices.provideAPIKey(GAMConstantsManager.sharedInstance.stringForID("google_maps_api_key))
     }
 }
@@ -79,7 +79,7 @@ class MyTableViewController : UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+
         title = "MyTableViewController.TITLE".localized()
         userWelcomeBackLabel?.text = "MyTableViewController.TITLE".localizedWithArgs("Mike")
     }
@@ -106,7 +106,7 @@ class MyTableViewController : UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+
         title = "MyTableViewController.TITLE".localized()
         userWelcomeBackLabel?.text = "MyTableViewController.TITLE".localizedWithArgs("Mike")
     }
@@ -114,6 +114,9 @@ class MyTableViewController : UITableViewController {
 ```
 
 The `userWelcomeBacklabel` will now output => `Hi, Mike` instead of the `Welcome back, Mike` as defined in our Localization file.
+
+### Usage inside of Storyboards
+Here at Gametime we love Storyboards and nibs. And with the advent of `@IBInspectable` it is now easier then ever to localize `UILabels`, `UIButtons`, `UIBarButtonItems`, and `UIViewController` titles. If you installed the framework with `Cocoapods` your work here is done. Simply open any Storyboard file and click on a `UILabel` and you will now see the new fields rendered automatically. If You used `Carthage` since it is a compiled framework you will need to copy and paste [extension-GAMConstantsInspectable](https://www.google.com) into your repo :(
 
 ## Updates
 
