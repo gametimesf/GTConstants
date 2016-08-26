@@ -118,6 +118,8 @@ The `userWelcomeBacklabel` will now output => `Hi, Mike` instead of the `Welcome
 ### Usage inside of Storyboards
 Here at Gametime we love Storyboards and nibs. And with the advent of `@IBInspectable` it is now easier then ever to localize `UILabels`, `UIButtons`, `UIBarButtonItems`, and `UIViewController` titles. If you installed the framework with `Cocoapods` your work here is done. Simply open any Storyboard file and click on a `UILabel` and you will now see the new fields rendered automatically. If You used `Carthage` since it is a compiled framework you will need to copy and paste [extension-GAMConstantsInspectable](https://www.google.com) into your repo :(
 
+<img src="https://raw.githubusercontent.com/gametimesf/GAMConstants/master/Resources/localizable-helper.png" alt="" />
+
 ## Updates
 
 - 0.1.18: Initial release for use with both Carthage and Cocoapods
