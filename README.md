@@ -4,9 +4,9 @@ A Constant and Localizable strings manager that allow for easy production & beta
 
 ## Installation
 
-
 [![Version](http://cocoapod-badges.herokuapp.com/v/GAMConstants/badge.png)](http://cocoadocs.org/docsets/GAMConstants)
 [![Platform](http://cocoapod-badges.herokuapp.com/p/GAMConstants/badge.png)](http://cocoadocs.org/docsets/GAMConstants)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 ### Cocoapods
 GAMConstants is available through [CocoaPods](http://cocoapods.org), to install
@@ -18,8 +18,22 @@ it simply add the following line to your Podfile:
 
     github "gametimesf/GAMConstants" == 0.1.8
 
+## Building
+
+GAMConstants 0.1.8 requires Swift 2.2
+
 ## Usage
 In Your AppDelegate.swift configure the constants manager with a production plist and staging plist. Based on your current environment pass an override config or not.
+
+We use the `overrideConfigFile` in our local development environments to
+allow easily customization of your production constants. For things like
+Braintree, hitting a development server, or using a custom Mixpanel
+account is all done through redefining the constant in the
+`overrideConfigFile`
+
+See the following example below for how we override our production
+values based on the `DEBUG` flag Xcode gives you
+
 
 #### Set up
 ```swift
@@ -31,7 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     #else
         GAMConstantsManager.sharedInstance.config = prodConfig()
     #endif
-
 
         return true
     }

@@ -12,6 +12,7 @@
 		3614FF4F1D6E754500275987 /* GAMInterceptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3614FF4C1D6E754500275987 /* GAMInterceptionManager.swift */; };
 		3614FF501D6E754500275987 /* GAMStringsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3614FF4D1D6E754500275987 /* GAMStringsManager.swift */; };
 		3614FF511D6E754500275987 /* GAMConstantsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3614FF4E1D6E754500275987 /* GAMConstantsManager.swift */; };
+		367C37EC1D70C8DB009C099D /* Constants.plist in Resources */ = {isa = PBXBuildFile; fileRef = 367C37EB1D70C8DB009C099D /* Constants.plist */; };
 		36BADA5A1D6E81B8008FC63E /* extension-GAMInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BADA591D6E81B8008FC63E /* extension-GAMInspectable.swift */; };
 /* End PBXBuildFile section */
 
@@ -22,6 +23,7 @@
 		3614FF4C1D6E754500275987 /* GAMInterceptionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GAMInterceptionManager.swift; sourceTree = "<group>"; };
 		3614FF4D1D6E754500275987 /* GAMStringsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GAMStringsManager.swift; sourceTree = "<group>"; };
 		3614FF4E1D6E754500275987 /* GAMConstantsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GAMConstantsManager.swift; sourceTree = "<group>"; };
+		367C37EB1D70C8DB009C099D /* Constants.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Constants.plist; sourceTree = "<group>"; };
 		36BADA591D6E81B8008FC63E /* extension-GAMInspectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "extension-GAMInspectable.swift"; sourceTree = "<group>"; };
 		541D946BD64509C61EF28C98 /* Pods-GAMConstants.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GAMConstants.release.xcconfig"; path = "Pods/Target Support Files/Pods-GAMConstants/Pods-GAMConstants.release.xcconfig"; sourceTree = "<group>"; };
 		CF430363871E531BDC16E20B /* Pods-GAMConstants.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GAMConstants.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GAMConstants/Pods-GAMConstants.debug.xcconfig"; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 				3614FF4D1D6E754500275987 /* GAMStringsManager.swift */,
 				3614FF4E1D6E754500275987 /* GAMConstantsManager.swift */,
 				36BADA591D6E81B8008FC63E /* extension-GAMInspectable.swift */,
+				367C37EB1D70C8DB009C099D /* Constants.plist */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -166,6 +169,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				367C37EC1D70C8DB009C099D /* Constants.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
