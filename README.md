@@ -9,7 +9,7 @@ A Constant and Localizable strings manager that allow for easy production & beta
 [![Platform](http://cocoapod-badges.herokuapp.com/p/GAMConstants/badge.png)](http://cocoadocs.org/docsets/GAMConstants)
 
 ### Cocoapods
-CSStickyHeaderFlowLayout is available through [CocoaPods](http://cocoapods.org), to install
+GAMConstants is available through [CocoaPods](http://cocoapods.org), to install
 it simply add the following line to your Podfile:
 
     pod "GAMConstants"
@@ -116,7 +116,7 @@ class MyTableViewController : UITableViewController {
 The `userWelcomeBacklabel` will now output => `Hi, Mike` instead of the `Welcome back, Mike` as defined in our Localization file.
 
 ### Usage inside of Storyboards
-Here at Gametime we love Storyboards and nibs. And with the advent of `@IBInspectable` it is now easier then ever to localize `UILabels`, `UIButtons`, `UIBarButtonItems`, and `UIViewController` titles. If you installed the framework with `Cocoapods` your work here is done. Simply open any Storyboard file and click on a `UILabel` and you will now see the new fields rendered automatically. If You used `Carthage` since it is a compiled framework you will need to copy and paste [extension-GAMConstantsInspectable](https://www.google.com) into your repo :(
+Here at Gametime we love Storyboards and xibs. And with the advent of `@IBInspectable` it is now easier then ever to localize `UILabels`, `UIButtons`, `UIBarButtonItems`, and `UIViewController` titles. If you installed the framework with `Cocoapods` your work here is done. Simply open any Storyboard file and click on a `UILabel` and you will now see the new fields rendered automatically. If You used `Carthage` you will need to copy and paste [extension-GAMConstantsInspectable](https://github.com/gametimesf/GAMConstants/blob/master/Source/extension-GAMInspectable.swift) into your repo due to the [framework not living inside your application](http://stackoverflow.com/a/29977368)
 
 <img src="https://raw.githubusercontent.com/gametimesf/GAMConstants/master/Resources/localizable-helper.png" alt="" />
 
