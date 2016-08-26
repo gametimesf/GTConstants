@@ -23,6 +23,7 @@ In Your AppDelegate.swift configure the constants manager with a production plis
 
 #### Set up
 ```
+class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     
     #if DEBUG
@@ -48,41 +49,71 @@ In Your AppDelegate.swift configure the constants manager with a production plis
                                         overrideConfigFile: "Constants_testing"
         )
     }
+}
 ```
 ### In Use
 #### Constants
 ```
-    import GAMConstants
-    class MyTableViewController : UITableViewController {
-        override func viewDidLoad() {
-            super.viewDidLoad()
-                    GMSServices.provideAPIKey(GAMConstantsManager.sharedInstance.stringForID("google_maps_api_key))
-        }
+import GAMConstants
+class MyTableViewController : UITableViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        GMSServices.provideAPIKey(GAMConstantsManager.sharedInstance.stringForID("google_maps_api_key))
     }
+}
 ```
 
 #### Strings
 
-Add a Localizable.strings file inside of /Resources where you might have the following keys
+Add a file titled: `Resources/Localizable.strings` file inside of /Resources where you might have the following keys
 ```
-  "MyTableViewController.TITLE" = "My first Table View Controller";
-  "MyTableViewController.WelcomeBack.User" = "Welcome back, %@";
+"MyTableViewController.TITLE" = "My first Table View Controller";
+"MyTableViewController.WelcomeBack.User" = "Welcome back, %@";
 ```
-
 And then you can simply call:
 ```
-    import GAMConstants
-    class MyTableViewController : UITableViewController {
-        @IBOutlet private weak var userWelcomeBackLabel: UILabel?
+import GAMConstants
+class MyTableViewController : UITableViewController {
+    @IBOutlet private weak var userWelcomeBackLabel: UILabel?
 
-        override func viewDidLoad() {
-            super.viewDidLoad()
+    override func viewDidLoad() {
+        super.viewDidLoad()
     
-            title = "MyTableViewController.TITLE".localized()
-            userWelcomeBackLabel?.text = "MyTableViewController.TITLE".localizedWithArgs("Mike")
-        }
+        title = "MyTableViewController.TITLE".localized()
+        userWelcomeBackLabel?.text = "MyTableViewController.TITLE".localizedWithArgs("Mike")
     }
+}
 ```
+
+#### Interceptions
+
+Now the real power of  `GAMConstants` comes into play. The ability to on the fly override constants and strings. Simply add an `interceptions_url` string value pointing to your server in your Constants.plist file returning the following structure:
+```
+"hotfixes": {
+    "google_maps_api_key": "abc123",
+    "MyTableViewController.WelcomeBack.User": "Hi, %@",
+}
+```
+
+Now with this on applaunch, the constants manager will automatically make an api call to the `interceptions_url` you configured above and allow easy override of values you have configured in either your `Resources/Localizable.strings` file and `Resources/Constants.plist` file
+
+So now if we take the above example:
+```
+import GAMConstants
+class MyTableViewController : UITableViewController {
+    @IBOutlet private weak var userWelcomeBackLabel: UILabel?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    
+        title = "MyTableViewController.TITLE".localized()
+        userWelcomeBackLabel?.text = "MyTableViewController.TITLE".localizedWithArgs("Mike")
+    }
+}
+```
+
+The `userWelcomeBacklabel` will now output => `Hi, Mike` instead of the `Welcome back, Mike` as defined in our Localization file.
 
 ## Updates
 
