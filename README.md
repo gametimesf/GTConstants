@@ -1,2 +1,102 @@
 # GAMConstants
-Easy to use framework for managing Constants and String localization all while being changeable from your server
+
+A constant, & string manager with the power of overriding hard-coded client values from the server. Also allows easy customization for a production and staging environments
+
+## Installation
+
+
+[![Version](http://cocoapod-badges.herokuapp.com/v/GAMConstants/badge.png)](http://cocoadocs.org/docsets/GAMConstants)
+[![Platform](http://cocoapod-badges.herokuapp.com/p/GAMConstants/badge.png)](http://cocoadocs.org/docsets/GAMConstants)
+
+### Cocoapods
+CSStickyHeaderFlowLayout is available through [CocoaPods](http://cocoapods.org), to install
+it simply add the following line to your Podfile:
+
+    pod "GAMConstants"
+    
+### Carthage
+
+    github "gametimesf/GAMConstants" == 0.1.8
+
+## Usage
+In Your AppDelegate.swift configure the constants manager with a production plist and staging plist. Based on your current environment pass an override config or not.
+
+#### Set up
+```
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    
+    #if DEBUG
+        GAMConstantsManager.sharedInstance.config = alphaConfig()
+    #else
+        GAMConstantsManager.sharedInstance.config = prodConfig()
+    #endif
+
+
+        return true
+    }
+    
+    // Where Constants is a .plist file in your /Resources directory
+    private class func prodConfig() -> GAMConstantsManagerConfig {
+        return GAMConstantsManagerConfig(defaultConfigFile: "Constants",
+                                        overrideConfigFile: nil
+        )
+    }
+
+    // Where Constants_testing is a .plist file in your /Resources directory
+    private class func alphaConfig() -> GAMConstantsManagerConfig {
+        return GAMConstantsManagerConfig(defaultConfigFile: "Constants",
+                                        overrideConfigFile: "Constants_testing"
+        )
+    }
+```
+### In Use
+#### Constants
+```
+    import GAMConstants
+    class MyTableViewController : UITableViewController {
+        override func viewDidLoad() {
+            super.viewDidLoad()
+                    GMSServices.provideAPIKey(GAMConstantsManager.sharedInstance.stringForID("google_maps_api_key))
+        }
+    }
+```
+
+#### Strings
+
+Add a Localizable.strings file inside of /Resources where you might have the following keys
+```
+  "MyTableViewController.TITLE" = "My first Table View Controller";
+  "MyTableViewController.WelcomeBack.User" = "Welcome back, %@";
+```
+
+And then you can simply call:
+```
+    import GAMConstants
+    class MyTableViewController : UITableViewController {
+        @IBOutlet private weak var userWelcomeBackLabel: UILabel?
+
+        override func viewDidLoad() {
+            super.viewDidLoad()
+    
+            title = "MyTableViewController.TITLE".localized()
+            userWelcomeBackLabel?.text = "MyTableViewController.TITLE".localizedWithArgs("Mike")
+        }
+    }
+```
+
+## Updates
+
+- 0.1.18: Initial release for use with both Carthage and Cocoapods
+
+## Requirements
+
+- Xcode 7
+- iOS 9
+
+## Author
+
+Mike Silvis, mike@gametime.co
+
+## License
+
+GAMConstants is available under the MIT license. See the LICENSE file for more info.
