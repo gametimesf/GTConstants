@@ -22,7 +22,7 @@ it simply add the following line to your Podfile:
 In Your AppDelegate.swift configure the constants manager with a production plist and staging plist. Based on your current environment pass an override config or not.
 
 #### Set up
-```
+```swift
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 ```
 ### In Use
 #### Constants
-```
+```swift
 import GAMConstants
 class MyTableViewController : UITableViewController {
     override func viewDidLoad() {
@@ -72,7 +72,7 @@ Add a file titled: `Resources/Localizable.strings` file inside of /Resources whe
 "MyTableViewController.WelcomeBack.User" = "Welcome back, %@";
 ```
 And then you can simply call:
-```
+```swift
 import GAMConstants
 class MyTableViewController : UITableViewController {
     @IBOutlet private weak var userWelcomeBackLabel: UILabel?
@@ -99,7 +99,7 @@ Now the real power of  `GAMConstants` comes into play. The ability to on the fly
 Now with this on applaunch, the constants manager will automatically make an api call to the `interceptions_url` you configured above and allow easy override of values you have configured in either your `Resources/Localizable.strings` file and `Resources/Constants.plist` file
 
 So now if we take the above example:
-```
+```swift
 import GAMConstants
 class MyTableViewController : UITableViewController {
     @IBOutlet private weak var userWelcomeBackLabel: UILabel?
