@@ -142,9 +142,10 @@ Here at Gametime we love Storyboards and xibs. And with the advent of `@IBInspec
 - Xcode 7
 - iOS 9
 
-## Author
+## Authors
 
-Mike Silvis, mike@gametime.co
+Mike Silvis, https://github.com/mikesilvis
+Rich Lowenberg https://github.com/richlowenberg
 
 ## License
 
