@@ -1,6 +1,6 @@
 # GAMConstants
 
-A constant, & string manager with the power of overriding hard-coded client values from the server. Also allows easy customization for a production and staging environments
+A Constant and Localizable strings manager that allow for easy production & beta developemnt with the additional capability of overriding values from your server
 
 ## Installation
 
