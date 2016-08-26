@@ -144,8 +144,8 @@ Here at Gametime we love Storyboards and xibs. And with the advent of `@IBInspec
 
 ## Authors
 
-Mike Silvis, https://github.com/mikesilvis
-Rich Lowenberg https://github.com/richlowenberg
+- Mike Silvis, https://github.com/mikesilvis
+- Rich Lowenberg https://github.com/richlowenberg
 
 ## License
 
