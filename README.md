@@ -20,7 +20,7 @@ it simply add the following line to your Podfile:
 
 ## Building
 
-GAMConstants 0.1.8 requires Swift 2.2
+GAMConstants 0.1.8 requires Swift 2.3
 
 ## Usage
 In Your AppDelegate.swift configure the constants manager with a production plist and staging plist. Based on your current environment pass an override config or not.
@@ -135,6 +135,7 @@ Here at Gametime we love Storyboards and xibs. And with the advent of `@IBInspec
 
 ## Updates
 
+- 0.1.19: Updating for Swift 2.3
 - 0.1.18: Initial release for use with both Carthage and Cocoapods
 
 ## Requirements
