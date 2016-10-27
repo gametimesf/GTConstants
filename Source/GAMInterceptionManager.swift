@@ -8,15 +8,15 @@
 
 import UIKit
 
-public class GAMInterceptionManager: NSObject {
-    public static let sharedInstance = GAMInterceptionManager()
+open class GAMInterceptionManager: NSObject {
+    open static let sharedInstance = GAMInterceptionManager()
     
-    private static let kInterceptionManagerKey = "kInterceptionManagerKey"
-    private static let interceptionDefault = "GAMInterceptionManagerDefault"
+    fileprivate static let kInterceptionManagerKey = "kInterceptionManagerKey"
+    fileprivate static let interceptionDefault = "GAMInterceptionManagerDefault"
     
     typealias HotfixDict = [String : AnyObject]
     
-    private var hotfixes : HotfixDict = [:] {
+    fileprivate var hotfixes : HotfixDict = [:] {
         didSet {
             GAMInterceptionManager.saveHotfixes(hotfixes)
         }
@@ -32,37 +32,37 @@ public class GAMInterceptionManager: NSObject {
     // MARK : Helper functions
     //
 
-    public func hotfixNumForKey(key : String) -> NSNumber? {
+    open func hotfixNumForKey(_ key : String) -> NSNumber? {
         guard let fix = hotfixes[key] as? NSNumber else { return nil }
 
         return fix
     }
 
-    public func hotfixStringForKey(key : String) -> String? {
+    open func hotfixStringForKey(_ key : String) -> String? {
         guard let fix = hotfixes[key] as? String else { return nil }
 
         return fix
     }
 
-    public func hotfixObjectforKey(key : String) -> AnyObject? {
+    open func hotfixObjectforKey(_ key : String) -> AnyObject? {
         guard let fix = hotfixes[key] else { return nil }
 
         return fix
     }
 
-    public func sync() {
+    open func sync() {
         guard let interceptionURL = GAMConstantsManager.sharedInstance.interceptionsURL() else { return }
         
-        let defaultSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+        let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
         
-        let dataTask = defaultSession.dataTaskWithURL(interceptionURL) { [weak self] (data, response, error) in
+        let dataTask = defaultSession.dataTask(with: interceptionURL, completionHandler: { [weak self] (data, response, error) in
             guard let data = data,
-                let responseObject = try? NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as? [String : AnyObject],
+                let responseObject = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String : AnyObject],
                 let hotfixes = responseObject?["hotfixes"] as? HotfixDict
                 else { return }
             
             self?.hotfixes = hotfixes
-        }
+        }) 
         
         dataTask.resume()
     }
@@ -71,11 +71,11 @@ public class GAMInterceptionManager: NSObject {
     // MARK : Persistence
     //
     
-    private class func getSavedHotfixes() -> HotfixDict? {
-        return NSUserDefaults(suiteName: GAMInterceptionManager.interceptionDefault)?.objectForKey(GAMInterceptionManager.kInterceptionManagerKey) as? HotfixDict
+    fileprivate class func getSavedHotfixes() -> HotfixDict? {
+        return UserDefaults(suiteName: GAMInterceptionManager.interceptionDefault)?.object(forKey: GAMInterceptionManager.kInterceptionManagerKey) as? HotfixDict
     }
     
-    private class func saveHotfixes(hotfixes : HotfixDict?) {
-        NSUserDefaults(suiteName : GAMInterceptionManager.interceptionDefault)?.setObject(hotfixes, forKey: GAMInterceptionManager.kInterceptionManagerKey)
+    fileprivate class func saveHotfixes(_ hotfixes : HotfixDict?) {
+        UserDefaults(suiteName : GAMInterceptionManager.interceptionDefault)?.set(hotfixes, forKey: GAMInterceptionManager.kInterceptionManagerKey)
     }
 }

@@ -18,15 +18,15 @@ public struct GAMConstantsManagerConfig {
     }
 }
 
-public class GAMConstantsManager: NSObject {
-    public static let sharedInstance = GAMConstantsManager()
+open class GAMConstantsManager: NSObject {
+    open static let sharedInstance = GAMConstantsManager()
     
     typealias PlistDict = [String : AnyObject]
-    private var plist : PlistDict = [:]
+    fileprivate var plist : PlistDict = [:]
     
-    private static let interceptionsURLKey = "interceptions_url"
+    fileprivate static let interceptionsURLKey = "interceptions_url"
     
-    public var config : GAMConstantsManagerConfig? {
+    open var config : GAMConstantsManagerConfig? {
         didSet {
             guard let config = config else { return }
             
@@ -42,7 +42,7 @@ public class GAMConstantsManager: NSObject {
         }
     }
 
-    private func setOverrideFile(file : String) {
+    fileprivate func setOverrideFile(_ file : String) {
         let updatedPlist = getContentsOfFile(file)
 
         for key in updatedPlist.keys {
@@ -58,17 +58,17 @@ public class GAMConstantsManager: NSObject {
     // MARK: Interceptions
     //
     
-    internal func interceptionsURL() -> NSURL? {
+    internal func interceptionsURL() -> URL? {
         guard interceptionsConfigured() else { return nil }
         
-        return NSURL(string: findFromPlist(GAMConstantsManager.interceptionsURLKey) as! String)
+        return URL(string: findFromPlist(GAMConstantsManager.interceptionsURLKey) as! String)
     }
 
     //
     // MARK: Finders
     //
 
-    public func intForID(key : String) -> NSInteger {
+    open func intForID(_ key : String) -> NSInteger {
         guard let int = findObjectFromKey(key) as? NSInteger else {
             fatalError( "Key is missing : \(key)")
         }
@@ -76,7 +76,7 @@ public class GAMConstantsManager: NSObject {
         return int
     }
 
-    public func numberForID(key : String) -> NSNumber {
+    open func numberForID(_ key : String) -> NSNumber {
         guard let number = findObjectFromKey(key) as? NSNumber else {
             fatalError( "Key is missing : \(key)")
         }
@@ -84,7 +84,7 @@ public class GAMConstantsManager: NSObject {
         return number
     }
 
-    public func boolForID(key: String) -> Bool {
+    open func boolForID(_ key: String) -> Bool {
         guard let bool = findObjectFromKey(key) as? Bool else {
             fatalError( "Key is missing : \(key)")
         }
@@ -92,7 +92,7 @@ public class GAMConstantsManager: NSObject {
         return bool
     }
 
-    public func stringForID(key : String) -> String {
+    open func stringForID(_ key : String) -> String {
         guard let string = findObjectFromKey(key) as? String else {
             fatalError("Key is missing : \(key)")
         }
@@ -104,21 +104,21 @@ public class GAMConstantsManager: NSObject {
     // MARK: Helpers
     //
     
-    private func interceptionsConfigured() -> Bool {
+    fileprivate func interceptionsConfigured() -> Bool {
         return (findFromPlist(GAMConstantsManager.interceptionsURLKey) as? String) != nil
     }
 
-    private func getContentsOfFile(file : String) -> PlistDict {
-        let path = NSBundle.mainBundle().URLForResource(file, withExtension: "plist")
+    fileprivate func getContentsOfFile(_ file : String) -> PlistDict {
+        let path = Bundle.main.url(forResource: file, withExtension: "plist")
 
-        guard let url = path, let plistDictionary = NSDictionary(contentsOfURL: url) as? PlistDict else {
+        guard let url = path, let plistDictionary = NSDictionary(contentsOf: url) as? PlistDict else {
             return [:]
         }
 
         return plistDictionary
     }
 
-    private func findObjectFromKey(key : String) -> AnyObject? {
+    fileprivate func findObjectFromKey(_ key : String) -> AnyObject? {
         if let object = findInterceptedObject(key) {
             return object
         }
@@ -126,7 +126,7 @@ public class GAMConstantsManager: NSObject {
         return findFromPlist(key)
     }
 
-    private func findFromPlist(key : String) -> AnyObject? {
+    fileprivate func findFromPlist(_ key : String) -> AnyObject? {
         guard let _ = config else {
             fatalError("You must provide a config param before accessing the constants manager")
         }
@@ -134,7 +134,7 @@ public class GAMConstantsManager: NSObject {
         return plist[key]
     }
 
-    private func findInterceptedObject(key : String) -> AnyObject? {
+    fileprivate func findInterceptedObject(_ key : String) -> AnyObject? {
         return GAMInterceptionManager.sharedInstance.hotfixObjectforKey(key)
     }
 

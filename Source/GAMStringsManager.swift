@@ -8,22 +8,22 @@
 
 import UIKit
 
-public class GAMStringsManager: NSObject {
-    public static let sharedInstance = GAMStringsManager()
+open class GAMStringsManager: NSObject {
+    open static let sharedInstance = GAMStringsManager()
 
-    public func stringForID(key : String?) -> String {
+    open func stringForID(_ key : String?) -> String {
         guard let key = key else { return "" }
 
         return findString(key, safeToNotExist: false)
     }
 
-    public func stringForIDWithList(key : String?, args: CVaListPointer) -> String {
+    open func stringForIDWithList(_ key : String?, args: CVaListPointer) -> String {
         guard let key = key else { return "" }
 
-        return NSString(format: findString(key, safeToNotExist: false), locale: NSLocale.currentLocale(), arguments: args) as String
+        return NSString(format: findString(key, safeToNotExist: false), locale: Locale.current, arguments: args) as String
     }
 
-    public func stringForID(key : String?, safetoNotExist: Bool) -> String {
+    open func stringForID(_ key : String?, safetoNotExist: Bool) -> String {
         guard let key = key else { return "" }
 
         return findString(key, safeToNotExist: safetoNotExist)
@@ -33,7 +33,7 @@ public class GAMStringsManager: NSObject {
     // MARK: Finders
     //
 
-    private func findString(key: String, safeToNotExist: Bool) -> String {
+    fileprivate func findString(_ key: String, safeToNotExist: Bool) -> String {
         if let string = findInterceptedString(key) {
             return string
         }
@@ -41,7 +41,7 @@ public class GAMStringsManager: NSObject {
         return findLocalizedString(key, safeToNotExist: safeToNotExist)
     }
 
-    private func findLocalizedString(key : String, safeToNotExist: Bool) -> String {
+    fileprivate func findLocalizedString(_ key : String, safeToNotExist: Bool) -> String {
         let string = NSLocalizedString(key, comment: "")
 
         if string == key {
@@ -55,7 +55,7 @@ public class GAMStringsManager: NSObject {
         return string
     }
 
-    private func findInterceptedString(key : String) -> String? {
+    fileprivate func findInterceptedString(_ key : String) -> String? {
         return GAMInterceptionManager.sharedInstance.hotfixStringForKey(key)
     }
 

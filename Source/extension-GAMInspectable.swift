@@ -13,7 +13,7 @@ extension String {
         return GAMStringsManager.sharedInstance.stringForID(self)
     }
 
-    public func localizedWithArgs(args : CVarArgType...) -> String {
+    public func localizedWithArgs(_ args : CVarArg...) -> String {
         return withVaList(args) {
             return GAMStringsManager.sharedInstance.stringForIDWithList(self, args: $0)
         } as String
@@ -48,7 +48,7 @@ extension UIButton {
             return titleLabel?.text
         }
         set {
-            setTitle(newValue?.localized(), forState: .Normal)
+            setTitle(newValue?.localized(), for: UIControlState())
         }
     }
 }
