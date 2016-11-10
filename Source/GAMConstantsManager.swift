@@ -142,6 +142,6 @@ open class GAMConstantsManager: NSObject {
 
 extension String {
     public func constantString() -> String {
-        return (GAMConstantsManager.sharedInstance.stringForID(self) ?? self)
+        return GAMConstantsManager.sharedInstance.stringForID(self)
     }
 }
