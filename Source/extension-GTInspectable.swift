@@ -1,6 +1,6 @@
 //
-//  extension-GAMInspectable.swift
-//  GAMConstants
+//  extension-GTInspectable.swift
+//  GTConstants
 //
 //  Created by Mike Silvis on 8/24/16.
 //  Copyright © 2016 Mike Silvis. All rights reserved.
@@ -10,12 +10,12 @@ import UIKit
 
 extension String {
     public func localized() -> String {
-        return GAMStringsManager.sharedInstance.stringForID(self)
+        return GTStringsManager.sharedInstance.stringForID(self)
     }
 
     public func localizedWithArgs(_ args : CVarArg...) -> String {
         return withVaList(args) {
-            return GAMStringsManager.sharedInstance.stringForIDWithList(self, args: $0)
+            return GTStringsManager.sharedInstance.stringForIDWithList(self, args: $0)
         } as String
     }
 }

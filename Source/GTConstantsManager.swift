@@ -1,5 +1,5 @@
 //
-//  GAMConstantsManager.swift
+//  GTConstantsManager.swift
 //  Gametime
 //
 //  Created by Mike Silvis on 8/17/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-public struct GAMConstantsManagerConfig {
+public struct GTConstantsManagerConfig {
     public let defaultConfigFile : String
     public let overrideConfigFile : String?
     
@@ -18,15 +18,15 @@ public struct GAMConstantsManagerConfig {
     }
 }
 
-open class GAMConstantsManager: NSObject {
-    open static let sharedInstance = GAMConstantsManager()
+open class GTConstantsManager: NSObject {
+    open static let sharedInstance = GTConstantsManager()
     
     typealias PlistDict = [String : AnyObject]
     fileprivate var plist : PlistDict = [:]
     
     fileprivate static let interceptionsURLKey = "interceptions_url"
     
-    open var config : GAMConstantsManagerConfig? {
+    open var config : GTConstantsManagerConfig? {
         didSet {
             guard let config = config else { return }
             
@@ -37,7 +37,7 @@ open class GAMConstantsManager: NSObject {
             }
             
             if interceptionsConfigured() {
-                GAMInterceptionManager.sharedInstance.sync()
+                GTInterceptionManager.sharedInstance.sync()
             }
         }
     }
@@ -61,7 +61,7 @@ open class GAMConstantsManager: NSObject {
     internal func interceptionsURL() -> URL? {
         guard interceptionsConfigured() else { return nil }
         
-        return URL(string: findFromPlist(GAMConstantsManager.interceptionsURLKey) as! String)
+        return URL(string: findFromPlist(GTConstantsManager.interceptionsURLKey) as! String)
     }
 
     //
@@ -105,7 +105,7 @@ open class GAMConstantsManager: NSObject {
     //
     
     fileprivate func interceptionsConfigured() -> Bool {
-        return (findFromPlist(GAMConstantsManager.interceptionsURLKey) as? String) != nil
+        return (findFromPlist(GTConstantsManager.interceptionsURLKey) as? String) != nil
     }
 
     fileprivate func getContentsOfFile(_ file : String) -> PlistDict {
@@ -135,13 +135,13 @@ open class GAMConstantsManager: NSObject {
     }
 
     fileprivate func findInterceptedObject(_ key : String) -> AnyObject? {
-        return GAMInterceptionManager.sharedInstance.hotfixObjectforKey(key)
+        return GTInterceptionManager.sharedInstance.hotfixObjectforKey(key)
     }
 
 }
 
 extension String {
     public func constantString() -> String {
-        return GAMConstantsManager.sharedInstance.stringForID(self)
+        return GTConstantsManager.sharedInstance.stringForID(self)
     }
 }

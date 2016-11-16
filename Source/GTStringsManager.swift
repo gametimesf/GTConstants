@@ -1,5 +1,5 @@
 //
-//  GAMStringsManager.swift
+//  GTStringsManager.swift
 //  Gametime
 //
 //  Created by Mike Silvis on 8/16/16.
@@ -8,8 +8,8 @@
 
 import UIKit
 
-open class GAMStringsManager: NSObject {
-    open static let sharedInstance = GAMStringsManager()
+open class GTStringsManager: NSObject {
+    open static let sharedInstance = GTStringsManager()
 
     open func stringForID(_ key : String?) -> String {
         guard let key = key else { return "" }
@@ -56,7 +56,7 @@ open class GAMStringsManager: NSObject {
     }
 
     fileprivate func findInterceptedString(_ key : String) -> String? {
-        return GAMInterceptionManager.sharedInstance.hotfixStringForKey(key)
+        return GTInterceptionManager.sharedInstance.hotfixStringForKey(key)
     }
 
 }

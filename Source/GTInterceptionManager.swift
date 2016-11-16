@@ -1,5 +1,5 @@
 //
-//  GAMInterceptionManager.swift
+//  GTInterceptionManager.swift
 //  Gametime
 //
 //  Created by Mike Silvis on 6/29/16.
@@ -8,24 +8,24 @@
 
 import UIKit
 
-open class GAMInterceptionManager: NSObject {
-    open static let sharedInstance = GAMInterceptionManager()
+open class GTInterceptionManager: NSObject {
+    open static let sharedInstance = GTInterceptionManager()
     
     fileprivate static let kInterceptionManagerKey = "kInterceptionManagerKey"
-    fileprivate static let interceptionDefault = "GAMInterceptionManagerDefault"
+    fileprivate static let interceptionDefault = "GTInterceptionManagerDefault"
     
     typealias HotfixDict = [String : AnyObject]
     
     fileprivate var hotfixes : HotfixDict = [:] {
         didSet {
-            GAMInterceptionManager.saveHotfixes(hotfixes)
+            GTInterceptionManager.saveHotfixes(hotfixes)
         }
     }
 
     override init() {
         super.init()
         
-        hotfixes = GAMInterceptionManager.getSavedHotfixes() ?? [:]
+        hotfixes = GTInterceptionManager.getSavedHotfixes() ?? [:]
     }
 
     //
@@ -51,7 +51,7 @@ open class GAMInterceptionManager: NSObject {
     }
 
     open func sync() {
-        guard let interceptionURL = GAMConstantsManager.sharedInstance.interceptionsURL() else { return }
+        guard let interceptionURL = GTConstantsManager.sharedInstance.interceptionsURL() else { return }
         
         let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
         
@@ -72,10 +72,10 @@ open class GAMInterceptionManager: NSObject {
     //
     
     fileprivate class func getSavedHotfixes() -> HotfixDict? {
-        return UserDefaults(suiteName: GAMInterceptionManager.interceptionDefault)?.object(forKey: GAMInterceptionManager.kInterceptionManagerKey) as? HotfixDict
+        return UserDefaults(suiteName: GTInterceptionManager.interceptionDefault)?.object(forKey: GTInterceptionManager.kInterceptionManagerKey) as? HotfixDict
     }
     
     fileprivate class func saveHotfixes(_ hotfixes : HotfixDict?) {
-        UserDefaults(suiteName : GAMInterceptionManager.interceptionDefault)?.set(hotfixes, forKey: GAMInterceptionManager.kInterceptionManagerKey)
+        UserDefaults(suiteName : GTInterceptionManager.interceptionDefault)?.set(hotfixes, forKey: GTInterceptionManager.kInterceptionManagerKey)
     }
 }
