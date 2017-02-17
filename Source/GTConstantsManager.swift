@@ -138,6 +138,17 @@ public class GTConstantsManager {
 
 }
 
+// To be used by objc only
+class GTConstantsBridger: NSObject {
+    static func string(key: String) -> String {
+        return GTConstantsManager.sharedInstance.string(key: key)
+    }
+
+    static func number(key: String) -> NSNumber {
+        return GTConstantsManager.sharedInstance.number(key: key)
+    }
+}
+
 extension String {
     public func constantString() -> String {
         return GTConstantsManager.sharedInstance.string(key: self)
