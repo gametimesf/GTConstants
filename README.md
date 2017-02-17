@@ -16,11 +16,11 @@ it simply add the following line to your Podfile:
 
 ### Carthage
 
-    github "gametimesf/GTConstants" == 0.1.16
+    github "gametimesf/GTConstants" == 0.1.17
 
 ## Building
 
-GTConstants 0.1.16 requires Swift 3.0.1
+GTConstants 0.1.17 requires Swift 3.0.1
 
 ## Usage
 In Your AppDelegate.swift configure the constants manager with a production plist and staging plist. Based on your current environment pass an override config or not.
@@ -135,6 +135,8 @@ Here at Gametime we love Storyboards and xibs. And with the advent of `@IBInspec
 
 ## Updates
 
+- 0.1.17 Updated Syntax & Ability to specify an array of override
+  configs
 - 0.1.16 XCode 8.2 project issue fix
 - 0.1.15 Migrating to GT naming
 - 0.1.14 Updating for Swift 3
