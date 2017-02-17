@@ -10,9 +10,9 @@ import UIKit
 
 public struct GTConstantsManagerConfig {
     public let defaultConfigFile: String
-    public let overrideConfigFile: String?
+    public let overrideConfigFile: [String?]
 
-    public init(defaultConfigFile: String, overrideConfigFile: String?) {
+    public init(defaultConfigFile: String, overrideConfigFile: [String]) {
         self.defaultConfigFile = defaultConfigFile
         self.overrideConfigFile = overrideConfigFile
     }
@@ -32,9 +32,7 @@ public class GTConstantsManager {
 
             plist = getContents(file: config.defaultConfigFile)
 
-            if let overrideFile = config.overrideConfigFile {
-                setOveride(file: overrideFile)
-            }
+            config.overrideConfigFile.forEach { setOveride(file: $0) }
 
             if interceptionsConfigured() {
                 GTInterceptionManager.sharedInstance.sync()

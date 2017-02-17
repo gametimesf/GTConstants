@@ -52,14 +52,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     // Where Constants is a .plist file in your /Resources directory
     private class func prodConfig() -> GTConstantsManagerConfig {
         return GTConstantsManagerConfig(defaultConfigFile: "Constants",
-                                        overrideConfigFile: nil
+                                        overrideConfigFile: []
         )
     }
 
     // Where Constants_testing is a .plist file in your /Resources directory
     private class func alphaConfig() -> GTConstantsManagerConfig {
         return GTConstantsManagerConfig(defaultConfigFile: "Constants",
-                                        overrideConfigFile: "Constants_testing"
+                                        overrideConfigFile: ["Constants_testing"]
         )
     }
 }
