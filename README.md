@@ -16,11 +16,11 @@ it simply add the following line to your Podfile:
 
 ### Carthage
 
-    github "gametimesf/GTConstants" == 0.1.19
+    github "gametimesf/GTConstants" == 0.1.20
 
 ## Building
 
-GTConstants 0.1.19 requires Swift 3.0.1
+GTConstants 0.1.20 requires Swift 3.0.1
 
 ## Usage
 In Your AppDelegate.swift configure the constants manager with a production plist and staging plist. Based on your current environment pass an override config or not.
