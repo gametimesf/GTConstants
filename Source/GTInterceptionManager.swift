@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class GTInterceptionManager: NSObject {
+open class GTInterceptionManager {
     open static let sharedInstance = GTInterceptionManager()
     
     fileprivate static let kInterceptionManagerKey = "kInterceptionManagerKey"
@@ -16,41 +16,35 @@ open class GTInterceptionManager: NSObject {
     
     typealias HotfixDict = [String : AnyObject]
     
-    fileprivate var hotfixes : HotfixDict = [:] {
+    fileprivate var hotfixes : HotfixDict = GTInterceptionManager.getSavedHotfixes() {
         didSet {
-            GTInterceptionManager.saveHotfixes(hotfixes)
+            GTInterceptionManager.save(hotfixes: hotfixes)
         }
-    }
-
-    override init() {
-        super.init()
-        
-        hotfixes = GTInterceptionManager.getSavedHotfixes() ?? [:]
     }
 
     //
     // MARK : Helper functions
     //
 
-    open func hotfixNumForKey(_ key : String) -> NSNumber? {
+    func hotFix(key : String) -> NSNumber? {
         guard let fix = hotfixes[key] as? NSNumber else { return nil }
 
         return fix
     }
 
-    open func hotfixStringForKey(_ key : String) -> String? {
+    public func hotFix(key : String) -> String? {
         guard let fix = hotfixes[key] as? String else { return nil }
 
         return fix
     }
 
-    open func hotfixObjectforKey(_ key : String) -> AnyObject? {
+    func hotfix(key : String) -> AnyObject? {
         guard let fix = hotfixes[key] else { return nil }
 
         return fix
     }
 
-    open func sync() {
+    func sync() {
         guard let interceptionURL = GTConstantsManager.sharedInstance.interceptionsURL() else { return }
         
         let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
@@ -71,11 +65,15 @@ open class GTInterceptionManager: NSObject {
     // MARK : Persistence
     //
     
-    fileprivate class func getSavedHotfixes() -> HotfixDict? {
-        return UserDefaults(suiteName: GTInterceptionManager.interceptionDefault)?.object(forKey: GTInterceptionManager.kInterceptionManagerKey) as? HotfixDict
+    fileprivate class func getSavedHotfixes() -> HotfixDict {
+        guard let fixes = UserDefaults(suiteName: GTInterceptionManager.interceptionDefault)?.object(forKey: GTInterceptionManager.kInterceptionManagerKey) as? HotfixDict else {
+            return [:]
+        }
+
+        return fixes
     }
     
-    fileprivate class func saveHotfixes(_ hotfixes : HotfixDict?) {
+    fileprivate class func save(hotfixes : HotfixDict?) {
         UserDefaults(suiteName : GTInterceptionManager.interceptionDefault)?.set(hotfixes, forKey: GTInterceptionManager.kInterceptionManagerKey)
     }
 }

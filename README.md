@@ -72,7 +72,7 @@ class MyTableViewController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        GMSServices.provideAPIKey(GTConstantsManager.sharedInstance.stringForID("google_maps_api_key))
+        GMSServices.provideAPIKey(GTConstantsManager.sharedInstance.string(key: "google_maps_api_key))
     }
 }
 ```
@@ -94,7 +94,7 @@ class MyTableViewController : UITableViewController {
         super.viewDidLoad()
 
         title = "MyTableViewController.TITLE".localized()
-        userWelcomeBackLabel?.text = "MyTableViewController.TITLE".localizedWithArgs("Mike")
+        userWelcomeBackLabel?.text = "MyTableViewController.TITLE".localized(args: "Mike")
     }
 }
 ```

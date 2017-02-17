@@ -8,40 +8,40 @@
 
 import UIKit
 
-open class GTStringsManager: NSObject {
-    open static let sharedInstance = GTStringsManager()
+public class GTStringsManager {
+    public static let sharedInstance = GTStringsManager()
 
-    open func stringForID(_ key : String?) -> String {
+    public func string(key : String?) -> String {
         guard let key = key else { return "" }
 
-        return findString(key, safeToNotExist: false)
+        return find(key: key, safeToNotExist: false)
     }
 
-    open func stringForIDWithList(_ key : String?, args: CVaListPointer) -> String {
+    public func string(key : String?, args: CVaListPointer) -> String {
         guard let key = key else { return "" }
 
-        return NSString(format: findString(key, safeToNotExist: false), locale: Locale.current, arguments: args) as String
+        return NSString(format: find(key: key, safeToNotExist: false), locale: Locale.current, arguments: args) as String
     }
 
-    open func stringForID(_ key : String?, safetoNotExist: Bool) -> String {
+    public func string(key : String?, safetoNotExist: Bool) -> String {
         guard let key = key else { return "" }
 
-        return findString(key, safeToNotExist: safetoNotExist)
+        return find(key: key, safeToNotExist: safetoNotExist)
     }
 
     //
     // MARK: Finders
     //
 
-    fileprivate func findString(_ key: String, safeToNotExist: Bool) -> String {
-        if let string = findInterceptedString(key) {
+    fileprivate func find(key: String, safeToNotExist: Bool) -> String {
+        if let string = findIntercepted(key: key) {
             return string
         }
 
-        return findLocalizedString(key, safeToNotExist: safeToNotExist)
+        return findLocalized(key: key, safeToNotExist: safeToNotExist)
     }
 
-    fileprivate func findLocalizedString(_ key : String, safeToNotExist: Bool) -> String {
+    fileprivate func findLocalized(key : String, safeToNotExist: Bool) -> String {
         let string = NSLocalizedString(key, comment: "")
 
         if string == key {
@@ -55,8 +55,8 @@ open class GTStringsManager: NSObject {
         return string
     }
 
-    fileprivate func findInterceptedString(_ key : String) -> String? {
-        return GTInterceptionManager.sharedInstance.hotfixStringForKey(key)
+    fileprivate func findIntercepted(key : String) -> String? {
+        return GTInterceptionManager.sharedInstance.hotFix(key: key)
     }
 
 }

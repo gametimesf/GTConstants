@@ -10,12 +10,12 @@ import UIKit
 
 extension String {
     public func localized() -> String {
-        return GTStringsManager.sharedInstance.stringForID(self)
+        return GTStringsManager.sharedInstance.string(key: self)
     }
 
-    public func localizedWithArgs(_ args : CVarArg...) -> String {
+    public func localized(args : CVarArg...) -> String {
         return withVaList(args) {
-            return GTStringsManager.sharedInstance.stringForIDWithList(self, args: $0)
+            return GTStringsManager.sharedInstance.string(key: self, args: $0)
         } as String
     }
 }

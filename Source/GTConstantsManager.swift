@@ -18,7 +18,7 @@ public struct GTConstantsManagerConfig {
     }
 }
 
-open class GTConstantsManager: NSObject {
+public class GTConstantsManager {
     open static let sharedInstance = GTConstantsManager()
     
     typealias PlistDict = [String : AnyObject]
@@ -30,10 +30,10 @@ open class GTConstantsManager: NSObject {
         didSet {
             guard let config = config else { return }
             
-            plist = getContentsOfFile(config.defaultConfigFile)
+            plist = getContents(file: config.defaultConfigFile)
             
             if let overrideFile = config.overrideConfigFile {
-                setOverrideFile(overrideFile)
+                setOveride(file: overrideFile)
             }
             
             if interceptionsConfigured() {
@@ -42,8 +42,8 @@ open class GTConstantsManager: NSObject {
         }
     }
 
-    fileprivate func setOverrideFile(_ file : String) {
-        let updatedPlist = getContentsOfFile(file)
+    fileprivate func setOveride(file : String) {
+        let updatedPlist = getContents(file: file)
 
         for key in updatedPlist.keys {
             guard let newSetting = updatedPlist[key] else { return }
@@ -61,39 +61,39 @@ open class GTConstantsManager: NSObject {
     internal func interceptionsURL() -> URL? {
         guard interceptionsConfigured() else { return nil }
         
-        return URL(string: findFromPlist(GTConstantsManager.interceptionsURLKey) as! String)
+        return URL(string: findPlist(key: GTConstantsManager.interceptionsURLKey) as! String)
     }
 
     //
     // MARK: Finders
     //
 
-    open func intForID(_ key : String) -> NSInteger {
-        guard let int = findObjectFromKey(key) as? NSInteger else {
+    public func int(key : String) -> NSInteger {
+        guard let int = find(key: key) as? NSInteger else {
             fatalError( "Key is missing : \(key)")
         }
 
         return int
     }
 
-    open func numberForID(_ key : String) -> NSNumber {
-        guard let number = findObjectFromKey(key) as? NSNumber else {
+    public func number(key : String) -> NSNumber {
+        guard let number = find(key: key) as? NSNumber else {
             fatalError( "Key is missing : \(key)")
         }
 
         return number
     }
 
-    open func boolForID(_ key: String) -> Bool {
-        guard let bool = findObjectFromKey(key) as? Bool else {
+    public func bool(key: String) -> Bool {
+        guard let bool = find(key: key) as? Bool else {
             fatalError( "Key is missing : \(key)")
         }
 
         return bool
     }
 
-    open func stringForID(_ key : String) -> String {
-        guard let string = findObjectFromKey(key) as? String else {
+    public func string(key : String) -> String {
+        guard let string = find(key: key) as? String else {
             fatalError("Key is missing : \(key)")
         }
 
@@ -105,10 +105,10 @@ open class GTConstantsManager: NSObject {
     //
     
     fileprivate func interceptionsConfigured() -> Bool {
-        return (findFromPlist(GTConstantsManager.interceptionsURLKey) as? String) != nil
+        return (findPlist(key: GTConstantsManager.interceptionsURLKey) as? String) != nil
     }
 
-    fileprivate func getContentsOfFile(_ file : String) -> PlistDict {
+    fileprivate func getContents(file : String) -> PlistDict {
         let path = Bundle.main.url(forResource: file, withExtension: "plist")
 
         guard let url = path, let plistDictionary = NSDictionary(contentsOf: url) as? PlistDict else {
@@ -118,15 +118,15 @@ open class GTConstantsManager: NSObject {
         return plistDictionary
     }
 
-    fileprivate func findObjectFromKey(_ key : String) -> AnyObject? {
-        if let object = findInterceptedObject(key) {
+    fileprivate func find(key : String) -> AnyObject? {
+        if let object = findIntercepted(key: key) {
             return object
         }
 
-        return findFromPlist(key)
+        return findPlist(key: key)
     }
 
-    fileprivate func findFromPlist(_ key : String) -> AnyObject? {
+    fileprivate func findPlist(key : String) -> AnyObject? {
         guard let _ = config else {
             fatalError("You must provide a config param before accessing the constants manager")
         }
@@ -134,14 +134,14 @@ open class GTConstantsManager: NSObject {
         return plist[key]
     }
 
-    fileprivate func findInterceptedObject(_ key : String) -> AnyObject? {
-        return GTInterceptionManager.sharedInstance.hotfixObjectforKey(key)
+    fileprivate func findIntercepted(key : String) -> AnyObject? {
+        return GTInterceptionManager.sharedInstance.hotfix(key: key)
     }
 
 }
 
 extension String {
     public func constantString() -> String {
-        return GTConstantsManager.sharedInstance.stringForID(self)
+        return GTConstantsManager.sharedInstance.string(key: self)
     }
 }
