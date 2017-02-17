@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class GTInterceptionManager {
+public class GTInterceptionManager {
     open static let sharedInstance = GTInterceptionManager()
 
     fileprivate static let kInterceptionManagerKey = "kInterceptionManagerKey"
@@ -26,7 +26,7 @@ open class GTInterceptionManager {
     // MARK : Helper functions
     //
 
-    func hotFix(key: String) -> NSNumber? {
+    public func hotFix(key: String) -> NSNumber? {
         guard let fix = hotfixes[key] as? NSNumber else { return nil }
 
         return fix
@@ -38,7 +38,7 @@ open class GTInterceptionManager {
         return fix
     }
 
-    func hotfix(key: String) -> AnyObject? {
+    public func hotfix(key: String) -> AnyObject? {
         guard let fix = hotfixes[key] else { return nil }
 
         return fix
