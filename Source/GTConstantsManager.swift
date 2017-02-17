@@ -139,7 +139,7 @@ public class GTConstantsManager {
 }
 
 // To be used by objc only
-class GTConstantsBridger: NSObject {
+public class GTConstantsBridger: NSObject {
     static func string(key: String) -> String {
         return GTConstantsManager.sharedInstance.string(key: key)
     }
