@@ -10,7 +10,7 @@ import UIKit
 
 public struct GTConstantsManagerConfig {
     public let defaultConfigFile: String
-    public let overrideConfigFile: [String?]
+    public let overrideConfigFile: [String]
 
     public init(defaultConfigFile: String, overrideConfigFile: [String]) {
         self.defaultConfigFile = defaultConfigFile
