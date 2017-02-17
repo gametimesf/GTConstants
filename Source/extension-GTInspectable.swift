@@ -13,7 +13,7 @@ extension String {
         return GTStringsManager.sharedInstance.string(key: self)
     }
 
-    public func localized(args : CVarArg...) -> String {
+    public func localized(args: CVarArg...) -> String {
         return withVaList(args) {
             return GTStringsManager.sharedInstance.string(key: self, args: $0)
         } as String

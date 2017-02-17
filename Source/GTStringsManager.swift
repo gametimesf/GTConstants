@@ -11,19 +11,19 @@ import UIKit
 public class GTStringsManager {
     public static let sharedInstance = GTStringsManager()
 
-    public func string(key : String?) -> String {
+    public func string(key: String?) -> String {
         guard let key = key else { return "" }
 
         return find(key: key, safeToNotExist: false)
     }
 
-    public func string(key : String?, args: CVaListPointer) -> String {
+    public func string(key: String?, args: CVaListPointer) -> String {
         guard let key = key else { return "" }
 
         return NSString(format: find(key: key, safeToNotExist: false), locale: Locale.current, arguments: args) as String
     }
 
-    public func string(key : String?, safetoNotExist: Bool) -> String {
+    public func string(key: String?, safetoNotExist: Bool) -> String {
         guard let key = key else { return "" }
 
         return find(key: key, safeToNotExist: safetoNotExist)
@@ -41,7 +41,7 @@ public class GTStringsManager {
         return findLocalized(key: key, safeToNotExist: safeToNotExist)
     }
 
-    fileprivate func findLocalized(key : String, safeToNotExist: Bool) -> String {
+    fileprivate func findLocalized(key: String, safeToNotExist: Bool) -> String {
         let string = NSLocalizedString(key, comment: "")
 
         if string == key {
@@ -55,9 +55,8 @@ public class GTStringsManager {
         return string
     }
 
-    fileprivate func findIntercepted(key : String) -> String? {
+    fileprivate func findIntercepted(key: String) -> String? {
         return GTInterceptionManager.sharedInstance.hotFix(key: key)
     }
 
 }
-
