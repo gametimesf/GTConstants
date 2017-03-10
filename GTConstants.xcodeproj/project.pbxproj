@@ -12,6 +12,7 @@
 		3614FF511D6E754500275987 /* GTConstantsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3614FF4E1D6E754500275987 /* GTConstantsManager.swift */; };
 		367C37EC1D70C8DB009C099D /* Constants.plist in Resources */ = {isa = PBXBuildFile; fileRef = 367C37EB1D70C8DB009C099D /* Constants.plist */; };
 		36BADA5A1D6E81B8008FC63E /* extension-GTInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BADA591D6E81B8008FC63E /* extension-GTInspectable.swift */; };
+		DA42B75B1E6949B1008D46C0 /* GTUpdateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA42B75A1E6949B1008D46C0 /* GTUpdateHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		367C37EB1D70C8DB009C099D /* Constants.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Constants.plist; sourceTree = "<group>"; };
 		36BADA591D6E81B8008FC63E /* extension-GTInspectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "extension-GTInspectable.swift"; sourceTree = "<group>"; };
 		3AC9C0F61DDD148400B355A3 /* GTConstants */ = {isa = PBXFileReference; lastKnownFileType = folder; path = GTConstants; sourceTree = "<group>"; };
+		DA42B75A1E6949B1008D46C0 /* GTUpdateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GTUpdateHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				3614FF4C1D6E754500275987 /* GTInterceptionManager.swift */,
 				3614FF4D1D6E754500275987 /* GTStringsManager.swift */,
 				3614FF4E1D6E754500275987 /* GTConstantsManager.swift */,
+				DA42B75A1E6949B1008D46C0 /* GTUpdateHelper.swift */,
 				36BADA591D6E81B8008FC63E /* extension-GTInspectable.swift */,
 				367C37EB1D70C8DB009C099D /* Constants.plist */,
 			);
@@ -153,6 +156,7 @@
 			files = (
 				3614FF501D6E754500275987 /* GTStringsManager.swift in Sources */,
 				3614FF511D6E754500275987 /* GTConstantsManager.swift in Sources */,
+				DA42B75B1E6949B1008D46C0 /* GTUpdateHelper.swift in Sources */,
 				36BADA5A1D6E81B8008FC63E /* extension-GTInspectable.swift in Sources */,
 				3614FF4F1D6E754500275987 /* GTInterceptionManager.swift in Sources */,
 			);

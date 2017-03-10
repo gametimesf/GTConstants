@@ -133,8 +133,87 @@ Here at Gametime we love Storyboards and xibs. And with the advent of `@IBInspec
 
 <img src="https://raw.githubusercontent.com/gametimesf/GTConstants/master/Resources/localizable-helper.png" alt="" />
 
+### App Updates
+
+`GTConstants` also gives your app the ability to check whether it's compatible with your mimimum app and iOS version requirements. The `interceptions_url` string pointing to your server should return the following structure: 
+
+```
+"update": {
+        "ios": [
+            {   
+                "restriction": 0,
+                "active": 1,
+                "min_app_version": {
+                    "version": "8.2.1",
+                    "message": {
+                        "en": "App version 8.2.1 update message"
+                    }
+                },
+                "min_os_version": {
+                    "version": "9",
+                    "message": {
+                        "en": "iOS version 9 update message"
+                    }
+                }
+            },
+            {   
+                "restriction": 2,
+                "active": 1,
+                "min_app_version": {
+                    "version": "5.1",
+                    "message": {
+                        "en": "App version 5.1 update message"
+                    }
+                },
+                "min_os_version": {
+                    "version": "7.2",
+                    "message": {
+                        "en": "iOS version 7.2 update message"
+                    }
+                }
+            }
+        ]
+    }
+```
+
+The configuration above allows you to add update rules by specifying the restriction level as well as the minimum app and OS version you'd like to support for your app. You can also add multiple update rules to the `ios` array if app and OS versions should have separate restriction levels (i.e. 0,1,2 -> low, medium, high).
+
+After the constants manager makes an api call to the `interceptions_url`, the interceptions manager will automatically check whether your app is in violation of the rules and provide the update data. 
+
+#### Usage
+
+To check whether the user needs to update their app, simply call `GTInterceptionsManager.sharedInstance.updateNeeded`. To check the update rule the user is in violation of, simply call `GTInterceptionsManager.sharedInstance.updateRule`. You may also want to use the `GTInterceptionsManager.sharedInstance.dataSyncCompletion` handler to determine whether update data from your server was received successfully.
+
+#### Example
+
+Say you want to show an update warning to users of app version 8.2.1 and iOS 9 and limit the functionality of your app to users of app version 5.1 and iOS 7.2, you can specify a low restriction for the former and a high restriction for the latter as shown in the configuration above. 
+
+If the user has app version 4.2, the returned update rule will be of restriction 2 (high). If the user has app version 6.5, the returned update rule will be of restriction 0 (low). If the user's app version is 9.6, no update rule will be returned and `updateNeeded` will be false. The returned update rule is always the one the user is in violation of with the highest restriction. 
+
+For this scenario, we can do 
+
+`````
+GTInterceptionManager.sharedInstance.dataSyncCompletion { status in
+    guard status != .error else {
+        // show error
+        return 
+    }
+
+    guard status == .complete else { return }
+    
+    let rule = GTInterceptionManager.sharedInstance.updateRule
+    
+    if rule.restriction == .high {
+        // limit functionality
+    } else if rule.restriction == .low {
+        // show warning
+    }
+}
+````
+
 ## Updates
 
+- 0.1.18 Added ability to check for app updates
 - 0.1.17 Updated Syntax & Ability to specify an array of override
   configs
 - 0.1.16 XCode 8.2 project issue fix

@@ -22,6 +22,35 @@ public class GTInterceptionManager {
         }
     }
 
+    fileprivate let updateHelper = GTUpdateHelper()
+
+    public var updateNeeded: Bool {
+        return updateHelper.updateNeeded
+    }
+
+    public var updateRule: UpdateRule? {
+        return updateHelper.updateRule
+    }
+
+    public fileprivate(set) var syncState: SyncState = .unstarted {
+        didSet {
+            updateCompletion()
+        }
+    }
+
+    public enum SyncState {
+        case unstarted
+        case pending
+        case complete
+        case error
+    }
+
+    public var dataSyncCompletion: ((SyncState) -> Void)? {
+        didSet {
+            updateCompletion()
+        }
+    }
+
     //
     // MARK : Helper functions
     //
@@ -44,21 +73,46 @@ public class GTInterceptionManager {
         return fix
     }
 
+    //
+    // MARK : Networking
+    //
+
     func sync() {
         guard let interceptionURL = GTConstantsManager.sharedInstance.interceptionsURL() else { return }
+        syncState = .pending
 
-        let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
+        let config = URLSessionConfiguration.default
+        config.requestCachePolicy = .reloadIgnoringLocalCacheData
+        config.urlCache = nil
 
-        let dataTask = defaultSession.dataTask(with: interceptionURL, completionHandler: { [weak self] (data, _, _) in
+        let defaultSession = URLSession(configuration: config)
+
+        let dataTask = defaultSession.dataTask(with: interceptionURL, completionHandler: { [weak self] (data, _, error) in
+
             guard let data = data,
-                let responseObject = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String : AnyObject],
-                let hotfixes = responseObject?["hotfixes"] as? HotfixDict
+                let responseObject = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String : AnyObject]
                 else { return }
 
+            let iosUpdateData = (responseObject?["update"] as? [String: AnyObject])?["ios"]
+            self?.updateHelper.configureUpdateRequirements(withData: iosUpdateData)
+
+            guard let hotfixes = responseObject?["hotfixes"] as? HotfixDict else {
+                self?.syncState = error != nil ? .error : .complete
+                return
+            }
             self?.hotfixes = hotfixes
+
+            self?.syncState = error != nil ? .error : .complete
         })
 
         dataTask.resume()
+    }
+
+    fileprivate func updateCompletion() {
+        DispatchQueue.main.async { [weak self] in
+            guard let state = self?.syncState else { return }
+            self?.dataSyncCompletion?(state)
+        }
     }
 
     //
