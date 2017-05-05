@@ -14,6 +14,10 @@ public class GTInterceptionManager {
     fileprivate static let kInterceptionManagerKey = "kInterceptionManagerKey"
     fileprivate static let interceptionDefault = "GTInterceptionManagerDefault"
 
+    //
+    // MARK : Hotfixes
+    //
+
     typealias HotfixDict = [String : AnyObject]
 
     fileprivate var hotfixes: HotfixDict = GTInterceptionManager.getSavedHotfixes() {
@@ -21,6 +25,10 @@ public class GTInterceptionManager {
             GTInterceptionManager.save(hotfixes: hotfixes)
         }
     }
+
+    //
+    // MARK : Updates
+    //
 
     fileprivate let updateHelper = GTUpdateHelper()
 
@@ -31,6 +39,16 @@ public class GTInterceptionManager {
     public var updateRule: UpdateRule? {
         return updateHelper.updateRule
     }
+
+    //
+    // MARK : Maintenance
+    //
+
+    public let maintenanceHelper = GTMaintenanceHelper()
+
+    //
+    // MARK : Networking States
+    //
 
     public fileprivate(set) var syncState: SyncState = .unstarted {
         didSet {
@@ -95,6 +113,8 @@ public class GTInterceptionManager {
 
             let iosUpdateData = (responseObject?["update"] as? [String: AnyObject])?["ios"]
             self?.updateHelper.configureUpdateRequirements(withData: iosUpdateData)
+
+            self?.maintenanceHelper.updateWithData((responseObject?["maintenance"] as? [String: AnyObject])?["ios"])
 
             guard let hotfixes = responseObject?["hotfixes"] as? HotfixDict else {
                 self?.syncState = error != nil ? .error : .complete
