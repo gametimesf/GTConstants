@@ -97,6 +97,9 @@ public class GTInterceptionManager {
 
     func sync() {
         guard let interceptionURL = GTConstantsManager.sharedInstance.interceptionsURL() else { return }
+
+        print("running through da sync")
+
         syncState = .pending
 
         let config = URLSessionConfiguration.default
@@ -105,13 +108,17 @@ public class GTInterceptionManager {
 
         let defaultSession = URLSession(configuration: config)
 
+        print("interception url is: \(interceptionURL)")
+
         let dataTask = defaultSession.dataTask(with: interceptionURL, completionHandler: { [weak self] (data, _, error) in
+            print("into here with : \(data) and : \(error)")
 
             guard let data = data,
                 let responseObject = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String : AnyObject]
                 else { return }
 
             let iosUpdateData = (responseObject?["update"] as? [String: AnyObject])?["ios"]
+            print("ios data: \(iosUpdateData)")
             self?.updateHelper.configureUpdateRequirements(withData: iosUpdateData)
 
             self?.maintenanceHelper.updateWithData((responseObject?["maintenance"] as? [String: AnyObject])?["ios"])
@@ -124,6 +131,8 @@ public class GTInterceptionManager {
 
             self?.syncState = error != nil ? .error : .complete
         })
+
+        print("made it to the bottom of the sync task")
 
         dataTask.resume()
     }
