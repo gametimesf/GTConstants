@@ -16,11 +16,11 @@ it simply add the following line to your Podfile:
 
 ### Carthage
 
-    github "gametimesf/GTConstants" == 0.2.0
+    github "gametimesf/GTConstants" == 0.2.1
 
 ## Building
 
-GTConstants 0.2.0 requires Swift 3.0.1
+GTConstants 0.2.1 requires Swift 3.0.1
 
 ## Usage
 In Your AppDelegate.swift configure the constants manager with a production plist and staging plist. Based on your current environment pass an override config or not.
@@ -135,7 +135,7 @@ Here at Gametime we love Storyboards and xibs. And with the advent of `@IBInspec
 
 ### App Updates
 
-`GTConstants` also gives your app the ability to check whether it's compatible with your mimimum app and iOS version requirements. The `interceptions_url` string pointing to your server should return the following structure: 
+`GTConstants` also gives your app the ability to check whether it's compatible with your mimimum app and iOS version requirements. The `interceptions_url` string pointing to your server should return the following structure:
 
 ```
 "update": {
@@ -178,7 +178,7 @@ Here at Gametime we love Storyboards and xibs. And with the advent of `@IBInspec
 
 The configuration above allows you to add update rules by specifying the restriction level as well as the minimum app and OS version you'd like to support for your app. You can also add multiple update rules to the `ios` array if app and OS versions should have separate restriction levels (i.e. 0,1,2 -> low, medium, high).
 
-After the constants manager makes an api call to the `interceptions_url`, the interceptions manager will automatically check whether your app is in violation of the rules and provide the update data. 
+After the constants manager makes an api call to the `interceptions_url`, the interceptions manager will automatically check whether your app is in violation of the rules and provide the update data.
 
 #### Usage
 
@@ -186,23 +186,23 @@ To check whether the user needs to update their app, simply call `GTInterception
 
 #### Example
 
-Say you want to show an update warning to users of app version 8.2.1 and iOS 9 and limit the functionality of your app to users of app version 5.1 and iOS 7.2, you can specify a low restriction for the former and a high restriction for the latter as shown in the configuration above. 
+Say you want to show an update warning to users of app version 8.2.1 and iOS 9 and limit the functionality of your app to users of app version 5.1 and iOS 7.2, you can specify a low restriction for the former and a high restriction for the latter as shown in the configuration above.
 
-If the user has app version 4.2, the returned update rule will be of restriction 2 (high). If the user has app version 6.5, the returned update rule will be of restriction 0 (low). If the user's app version is 9.6, no update rule will be returned and `updateNeeded` will be false. The returned update rule is always the one the user is in violation of with the highest restriction. 
+If the user has app version 4.2, the returned update rule will be of restriction 2 (high). If the user has app version 6.5, the returned update rule will be of restriction 0 (low). If the user's app version is 9.6, no update rule will be returned and `updateNeeded` will be false. The returned update rule is always the one the user is in violation of with the highest restriction.
 
-For this scenario, we can do 
+For this scenario, we can do
 
 `````
 GTInterceptionManager.sharedInstance.dataSyncCompletion { status in
     guard status != .error else {
         // show error
-        return 
+        return
     }
 
     guard status == .complete else { return }
-    
+
     let rule = GTInterceptionManager.sharedInstance.updateRule
-    
+
     if rule.restriction == .high {
         // limit functionality
     } else if rule.restriction == .low {
@@ -213,6 +213,7 @@ GTInterceptionManager.sharedInstance.dataSyncCompletion { status in
 
 ## Updates
 
+- 0.1.21 Added ability to toggle maintance mode
 - 0.1.20 Added ability to check for app updates
 - 0.1.17 Updated Syntax & Ability to specify an array of override
   configs
