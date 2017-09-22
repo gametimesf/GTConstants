@@ -140,11 +140,11 @@ public class GTConstantsManager {
 
 // To be used by objc only
 public class GTConstantsBridger: NSObject {
-    public static func string(key: String) -> String {
+    @objc public static func string(key: String) -> String {
         return GTConstantsManager.sharedInstance.string(key: key)
     }
 
-    public static func number(key: String) -> NSNumber {
+    @objc public static func number(key: String) -> NSNumber {
         return GTConstantsManager.sharedInstance.number(key: key)
     }
 }

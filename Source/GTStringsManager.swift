@@ -63,7 +63,7 @@ public class GTStringsManager {
 
 // To be used by objc only
 public class GTStringBridger: NSObject {
-    public static func string(key: String) -> String {
+    @objc public static func string(key: String) -> String {
         return GTStringsManager.sharedInstance.string(key: key)
     }
 }
