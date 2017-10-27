@@ -1,6 +1,6 @@
 # GTConstants
 
-A Constant and Localizable strings manager that allow for easy production & beta developemnt with the additional capability of overriding values from your server
+A Constant and Localizable strings manager that allow for easy production & beta development with the additional capability of overriding values from your server
 
 ## Installation
 
