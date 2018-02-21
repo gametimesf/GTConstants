@@ -20,7 +20,7 @@ extension String {
     }
 }
 
-extension UIBarButtonItem {
+public extension UIBarButtonItem {
     @IBInspectable public var localizedText: String? {
         get {
             return title
@@ -31,7 +31,7 @@ extension UIBarButtonItem {
     }
 }
 
-extension UIViewController {
+public extension UIViewController {
     @IBInspectable public var localizedTitle: String? {
         get {
             return title
@@ -42,7 +42,7 @@ extension UIViewController {
     }
 }
 
-extension UIButton {
+public extension UIButton {
     @IBInspectable public var localizedText: String? {
         get {
             return titleLabel?.text
@@ -53,7 +53,7 @@ extension UIButton {
     }
 }
 
-extension UILabel {
+public extension UILabel {
     @IBInspectable public var localizedText: String? {
         get {
             return text
