@@ -181,7 +181,7 @@ internal class GTUpdateHelper {
 }
 
 fileprivate extension String {
-    fileprivate func isOlder(thanVersion version: String) -> Bool {
+    func isOlder(thanVersion version: String) -> Bool {
         guard !self.isEmpty && !version.isEmpty else { return false }
         return self.compare(version, options: String.CompareOptions.numeric) == ComparisonResult.orderedAscending
     }

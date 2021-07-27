@@ -19,7 +19,7 @@ public struct GTConstantsManagerConfig {
 }
 
 public class GTConstantsManager {
-    open static let sharedInstance = GTConstantsManager()
+    public static let sharedInstance = GTConstantsManager()
 
     typealias PlistDict = [String : AnyObject]
     fileprivate var plist: PlistDict = [:]

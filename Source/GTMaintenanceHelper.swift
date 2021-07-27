@@ -69,7 +69,7 @@ public class GTMaintenanceHelper {
                 let responseObject = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String : AnyObject]
                 else { return }
 
-            self?.updateWithData((responseObject?["maintenance"] as? [String: AnyObject])?["ios"])
+            self?.updateWithData((responseObject["maintenance"] as? [String: AnyObject])?["ios"])
             completion()
         })
         
