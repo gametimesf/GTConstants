@@ -21,7 +21,7 @@ extension String {
 }
 
 public extension UIBarButtonItem {
-    @IBInspectable public var localizedText: String? {
+    @IBInspectable var localizedText: String? {
         get {
             return title
         }
@@ -32,7 +32,7 @@ public extension UIBarButtonItem {
 }
 
 public extension UIViewController {
-    @IBInspectable public var localizedTitle: String? {
+    @IBInspectable var localizedTitle: String? {
         get {
             return title
         }
@@ -43,18 +43,18 @@ public extension UIViewController {
 }
 
 public extension UIButton {
-    @IBInspectable public var localizedText: String? {
+    @IBInspectable var localizedText: String? {
         get {
             return titleLabel?.text
         }
         set {
-            setTitle(newValue?.localized(), for: UIControlState())
+            setTitle(newValue?.localized(), for: UIControl.State())
         }
     }
 }
 
 public extension UILabel {
-    @IBInspectable public var localizedText: String? {
+    @IBInspectable var localizedText: String? {
         get {
             return text
         }

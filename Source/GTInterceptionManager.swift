@@ -9,7 +9,7 @@
 import UIKit
 
 public class GTInterceptionManager {
-    open static let sharedInstance = GTInterceptionManager()
+    public static let sharedInstance = GTInterceptionManager()
 
     fileprivate static let kInterceptionManagerKey = "kInterceptionManagerKey"
     fileprivate static let interceptionDefault = "GTInterceptionManagerDefault"
@@ -111,12 +111,12 @@ public class GTInterceptionManager {
                 let responseObject = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String : AnyObject]
                 else { return }
 
-            let iosUpdateData = (responseObject?["update"] as? [String: AnyObject])?["ios"]
+            let iosUpdateData = (responseObject["update"] as? [String: AnyObject])?["ios"]
             self?.updateHelper.configureUpdateRequirements(withData: iosUpdateData)
 
-            self?.maintenanceHelper.updateWithData((responseObject?["maintenance"] as? [String: AnyObject])?["ios"])
+            self?.maintenanceHelper.updateWithData((responseObject["maintenance"] as? [String: AnyObject])?["ios"])
 
-            guard let hotfixes = responseObject?["hotfixes"] as? HotfixDict else {
+            guard let hotfixes = responseObject["hotfixes"] as? HotfixDict else {
                 self?.syncState = error != nil ? .error : .complete
                 return
             }
