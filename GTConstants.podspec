@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.source_files          = 'Source/*.swift'
   s.exclude_files         = "Classes/Exclude"
   s.ios.frameworks        = 'Foundation', 'UIKit'
-  s.ios.deployment_target = '12.0'
+  s.ios.deployment_target = '11.0'
   s.requires_arc          = true
   s.swift_version         = '5.0'
   s.source                = { :git => 'https://github.com/gametimesf/GTConstants.git', :tag => "#{s.version}" }
