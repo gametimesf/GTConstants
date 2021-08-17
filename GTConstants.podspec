@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.license               = 'MIT'
   s.author                = { "GT Engineering" => "engineering@gametime.co" }
   s.source_files          = 'Source/*.swift'
-  s.resources =           = "Source/*.plist"
+  s.resources            = "Source/*.plist"
   s.exclude_files         = "Classes/Exclude"
   s.ios.frameworks        = 'Foundation', 'UIKit'
   s.ios.deployment_target = '11.0'
